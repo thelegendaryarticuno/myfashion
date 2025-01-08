@@ -37,7 +37,7 @@ const NewArrivals = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Banner Section */}
-      <div className="relative h-[60vh] bg-indigo-600 overflow-hidden">
+      <div className="relative h-[60vh] bg-green-600 overflow-hidden">
         <div
           className="absolute top-0 left-0 w-full h-full flex transition-transform duration-1000 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -94,7 +94,7 @@ const NewArrivals = () => {
                   alt={`New Arrival ${index + 1}`}
                   className="w-full h-80 object-cover"
                 />
-                <div className="absolute top-3 left-3 bg-indigo-500 text-white px-2 py-1 rounded-full text-sm font-medium">
+                <div className="absolute top-3 left-3 bg-green-500 text-white px-2 py-1 rounded-full text-sm font-medium">
                   New
                 </div>
                 <button className="absolute top-3 right-3 bg-white p-2 rounded-full text-gray-600 hover:text-indigo-600">
@@ -106,13 +106,13 @@ const NewArrivals = () => {
                   Fresh Style {index + 1}
                 </h3>
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-lg font-bold text-indigo-600">
+                  <span className="text-lg font-bold text-green-600">
                     ₹2,999
                   </span>
                   <span className="text-sm text-gray-500 line-through">
                     ₹3,999
                   </span>
-                  <span className="text-sm text-indigo-600 font-medium">
+                  <span className="text-sm text-green-600 font-medium">
                     25% OFF
                   </span>
                 </div>
