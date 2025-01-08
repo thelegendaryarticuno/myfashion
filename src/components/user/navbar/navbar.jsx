@@ -91,11 +91,14 @@ const Navbar = () => {
             </button>
 
             {/* Logo */}
-            <a href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-serif tracking-wider text-[#4E0F3E]">
-                AMBRAE
-              </span>
-            </a>
+            <a href="/" className="flex flex-col items-center">
+  <span className="text-4xl font-serif tracking-wider text-[#4E0F3E]">
+    Taylorzone
+  </span>
+  <span className="text-sm font-light text-[#4E0F3E]">
+    by Raiba
+  </span>
+</a>
 
             {/* Navigation Links - Desktop */}
             <div className="hidden md:flex items-center space-x-8">
