@@ -7,6 +7,8 @@ import Shop from "./pages/user/shop";
 import ContactUs from "./pages/user/contactus";
 import Login from "./pages/user/login";
 import Signup from "./pages/user/signup";
+import BestSeller from "./pages/user/BestSeller";
+import NewArrival from "./pages/user/NewArrival";
 import { AuthProvider } from "./context/AuthContext";
 
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="contact" element={<ContactUs></ContactUs>} />{" "}
           <Route path="signup" element={<Signup></Signup>} />{" "}
           <Route path="login" element={<Login></Login>} />{" "}
+          <Route path="best-sellers" element={<BestSeller></BestSeller>} />{" "}
+          <Route path="new-arrivals" element={<NewArrival></NewArrival>} />{" "}
         </Routes>
         <Footer />
 
