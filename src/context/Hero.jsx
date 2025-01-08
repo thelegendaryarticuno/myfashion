@@ -172,6 +172,56 @@ const Hero = () => {
         </div>
       </section>
 
+      {/* New Video Section */}
+      <section className="py-16 bg-black">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Experience Our Latest Collection
+            </h2>
+            <p className="text-gray-300 text-lg">
+              Watch our stunning new arrivals in action
+            </p>
+          </motion.div>
+          <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+              poster="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80"
+            >
+              <source
+                src="https://video.wixstatic.com/video/11062b_79271b7012564a3e89ff69c3362dc5b8/1080p/mp4/file.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="text-center text-white"
+              >
+                <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                  Elegance in Motion
+                </h3>
+                <button className="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition duration-300">
+                  Shop Collection
+                </button>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Products Grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -332,6 +382,90 @@ const Hero = () => {
                   </button>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+
+      
+      {/* Appointment Booking Section */}
+      <section className="relative h-[600px] overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1585914924626-15adac1e6402?q=80&w=2071&auto=format&fit=crop"
+          alt="Luxury Store Interior"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center px-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-5xl font-bold text-white mb-6"
+          >
+            SCHEDULE AN APPOINTMENT
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-lg md:text-xl text-white mb-8 max-w-2xl"
+          >
+            Click below to schedule a virtual or an in-store appointment at one of our flagship stores.
+          </motion.p>
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="bg-white text-black px-12 py-4 text-lg font-semibold hover:bg-gray-100 transition duration-300"
+          >
+            BOOK NOW
+          </motion.button>
+        </div>
+      </section>
+
+      {/* Footer Newsletter Section */}
+      <section className="bg-[#1a472a] py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-2xl md:text-3xl font-bold text-white text-center mb-8"
+            >
+              Enter Into The World of Luxury Fashion
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col md:flex-row gap-4 items-stretch"
+            >
+              <input
+                type="email"
+                placeholder="Enter Your Email Here"
+                className="flex-grow bg-transparent border-b-2 border-white/30 text-white placeholder-white/70 py-3 px-4 focus:outline-none focus:border-white transition-colors"
+              />
+              <button
+                className="md:self-end"
+                aria-label="Subscribe"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-8 h-8 text-white hover:text-gray-200 transition-colors"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </button>
             </motion.div>
           </div>
         </div>
