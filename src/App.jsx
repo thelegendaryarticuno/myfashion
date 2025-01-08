@@ -1,15 +1,27 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Router
 import Navbar from "./components/user/navbar/navbar";
 import Hero from "./context/Hero";
 import Footer from "./context/Footer";
-import SearchBar from "./components/user/navbar/searchBar";
+import Shop from "./pages/user/shop";
+import ContactUs from "./pages/user/contactus";
+
+
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          {/* Add routes for different pages */}
+          <Route path="/" element={<Hero />} />
+          <Route path="/shop" element={<Shop></Shop>} />{" "}
+          <Route path="contact" element={<ContactUs></ContactUs>} />{" "}
+     
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
