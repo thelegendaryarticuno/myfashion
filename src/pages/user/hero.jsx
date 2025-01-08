@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Clock } from "lucide-react";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -8,6 +9,37 @@ const Hero = () => {
     minutes: 11,
     seconds: 29,
   });
+
+  const carouselImages = [
+    "https://images.unsplash.com/photo-1525609004556-c46c949d84ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDIwfHxpbmR1c2lhbiUyMGV0aG5pY3xlbnwwfHx8fDE2ODg4MzIwMzc&ixlib=rb-4.0.3&q=80&w=1200",
+    "https://images.unsplash.com/photo-1610078172498-7d5e994a7019?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDEyfHxpbmR1c2lhbiUyMGV0aG5pY3xlbnwwfHx8fDE2ODg4MzIwNTI&ixlib=rb-4.0.3&q=80&w=1200",
+    "https://images.unsplash.com/photo-1580910051071-a17b6bfca68c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDV8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMzMDQz&ixlib=rb-4.0.3&q=80&w=1200",
+    "https://images.unsplash.com/photo-1605902711622-cfb43c4437e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDR8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMzMDU4&ixlib=rb-4.0.3&q=80&w=1200",
+  ];
+
+  const flashSaleProducts = [
+    {
+      image: "https://images.unsplash.com/photo-1556909217-8dbbe4b3bdc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDIyfHxpbmR1c2lhbiUyMGV0aG5pYyUyMGJyaWRhbCUyMGdhb3dufGVufDB8fHx8MTY4ODgzMjA3Ng&ixlib=rb-4.0.3&q=80&w=400",
+      title: "Embroidered Kundan Red Maharani",
+      originalPrice: 8999,
+      salePrice: 4599,
+      discount: "47% off",
+    },
+    {
+      // image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDE5fHxpbmR1c2lhbiUyMGV0aG5pYyUyMHdhcmV8ZW58MHx8fHwxNjg4ODM0MDg2&ixlib=rb-4.0.3&q=80&w=400",
+      title: "Designer Party Saree",
+      originalPrice: 6999,
+      salePrice: 3999,
+      discount: "43% off",
+    },
+    {
+      // image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDExfHxpbmR1c2lhbiUyMGV0aG5pYyUyMGdsb3duJTIwY29sbGVjdGlvbnxlbnwwfHx8fDE2ODg4MzIwOTg&ixlib=rb-4.0.3&q=80&w=400",
+      title: "Ethnic Gown Collection",
+      originalPrice: 5999,
+      salePrice: 2999,
+      discount: "50% off",
+    },
+  ];
 
   // Timer effect
   useEffect(() => {
@@ -26,238 +58,104 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Slider effect
+  // Carousel effect
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % banners.length);
+    const carouselTimer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
     }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const banners = [
-    {
-      image:
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
-      title: "Summer Collection",
-      subtitle: "Embrace the heat with our coolest styles",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
-      title: "Autumn Vibes",
-      subtitle: "Cozy up with our latest fall fashion",
-    },
-    {
-      image:
-        "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
-      title: "Elegant Evenings",
-      subtitle: "Dazzle in our evening wear collection",
-    },
-  ];
-
-  const categories = [
-    {
-      name: "Ethnic Wear",
-      image:
-        "https://images.unsplash.com/photo-1583391733956-6f157d71b485?auto=format&fit=crop&q=80&w=1000",
-    },
-    {
-      name: "Western Wear",
-      image:
-        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=1000",
-    },
-    {
-      name: "Accessories",
-      image:
-        "https://images.unsplash.com/photo-1576053139778-7e32f2ae3cfd?auto=format&fit=crop&q=80&w=1000",
-    },
-    {
-      name: "Footwear",
-      image:
-        "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&q=80&w=1000",
-    },
-  ];
+    return () => clearInterval(carouselTimer);
+  }, [carouselImages.length]);
 
   return (
-    <div className="w-full">
-      {/* Main Hero Section with Sliding Banners */}
-      <section className="relative h-screen overflow-hidden">
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={currentSlide}
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <img
-              src={banners[currentSlide].image}
-              alt={banners[currentSlide].title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-              <div className="text-center">
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="text-5xl md:text-7xl font-bold text-white mb-4"
-                >
-                  {banners[currentSlide].title}
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-xl md:text-2xl text-white mb-8"
-                >
-                  {banners[currentSlide].subtitle}
-                </motion.p>
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="bg-white text-black px-8 py-3 text-lg font-semibold rounded-full hover:bg-gray-200 transition duration-300"
-                >
-                  Shop Now
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-        <div className="absolute bottom-5 left-0 right-0 flex justify-center space-x-2">
-          {banners.map((_, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full ${
-                index === currentSlide ? "bg-white" : "bg-gray-400"
-              }`}
-              onClick={() => setCurrentSlide(index)}
-            />
-          ))}
+    <div className="w-full bg-white">
+      {/* Main Banner Carousel */}
+      <div className="relative h-[500px]">
+        {carouselImages.map((image, index) => (
+          <motion.img
+            key={index}
+            src={image}
+            alt={`Banner ${index + 1}`}
+            className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-1000 ${
+              currentSlide === index ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+          <div className="text-center text-white">
+            <h1 className="text-5xl font-bold mb-4">New Monsoon Collection</h1>
+            <button className="bg-orange-500 text-white px-8 py-3 rounded-md hover:bg-orange-600 transition">
+              ORDER NOW
+            </button>
+          </div>
         </div>
-      </section>
+        {/* Carousel Controls */}
+        <button
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
+          onClick={() =>
+            setCurrentSlide(
+              (currentSlide - 1 + carouselImages.length) % carouselImages.length
+            )
+          }
+        >
+          &#8592;
+        </button>
+        <button
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full"
+          onClick={() =>
+            setCurrentSlide((currentSlide + 1) % carouselImages.length)
+          }
+        >
+          &#8594;
+        </button>
+      </div>
 
-      {/* Categories Grid */}
-      <section className="py-16">
+      {/* Flash Sale Section with updated styling */}
+      <div className="bg-gradient-to-r from-red-50 to-pink-50 py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Shop by Category
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {categories.map((category, index) => (
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center space-x-4">
+              <h2 className="text-3xl font-bold text-gray-800">Flash Sale</h2>
+            </div>
+            <div className="flex items-center space-x-3 bg-white px-4 py-2 rounded-lg shadow">
+              <Clock className="w-5 h-5 text-red-600" />
+              <span className="text-lg font-medium">
+                {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {flashSaleProducts.map((product, index) => (
               <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 50 }}
+                key={product.title}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative group cursor-pointer"
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="aspect-square rounded-lg overflow-hidden">
+                <div className="relative aspect-[3/4]">
                   <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                    <h3 className="text-2xl font-semibold text-white">
-                      {category.name}
-                    </h3>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* New Video Section */}
-      <section className="py-16 bg-black">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Experience Our Latest Collection
-            </h2>
-            <p className="text-gray-300 text-lg">
-              Watch our stunning new arrivals in action
-            </p>
-          </motion.div>
-          <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-              poster="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80"
-            >
-              <source
-                src="https://video.wixstatic.com/video/11062b_79271b7012564a3e89ff69c3362dc5b8/1080p/mp4/file.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="text-center text-white"
-              >
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                  Elegance in Motion
-                </h3>
-                <button className="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition duration-300">
-                  Shop Collection
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products Grid */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Featured Products
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-lg overflow-hidden shadow-lg group"
-              >
-                <div className="relative overflow-hidden aspect-[3/4]">
-                  <img
-                    src={`https://source.unsplash.com/random/600x800?fashion&sig=${item}`}
-                    alt={`Featured product ${item}`}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <button className="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition duration-300">
-                      Quick View
-                    </button>
+                  <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    {product.discount}
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold mb-2">
-                    Trendy Fashion Item {item}
+                  <h3 className="text-lg font-medium mb-3 text-gray-800">
+                    {product.title}
                   </h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-gray-600">₹1,499.00</p>
-                    <p className="text-emerald-600">50% OFF</p>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl font-bold text-red-600">
+                      ₹{product.salePrice}
+                    </span>
+                    <span className="text-gray-400 line-through">
+                      ₹{product.originalPrice}
+                    </span>
                   </div>
-                  <button className="w-full mt-4 bg-black text-white py-2 rounded-full hover:bg-gray-800 transition duration-300">
+                  <button className="w-full mt-4 bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors">
                     Add to Cart
                   </button>
                 </div>
@@ -265,207 +163,223 @@ const Hero = () => {
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Black & White Theme Banner */}
-      <section className="relative bg-gradient-to-r from-black to-gray-800 py-20">
+      {/* Shop By Category */}
+      <div className="bg-gray-50 py-8">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="relative h-96 rounded-lg overflow-hidden shadow-lg">
-              <img
-                src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Clothing Collection"
-                className="w-full h-full object-cover rounded-lg transform hover:scale-105 transition duration-500"
-              />
-            </div>
-            <div className="text-white text-center md:text-left">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-wide">
-                Fashion Redefined
-              </h2>
-              <p className="text-2xl md:text-3xl mb-6">
-                EXCLUSIVE COLLECTION - UP TO 80% OFF
-              </p>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 inline-block">
-                <p className="text-xl mb-4">
-                  Limited Time Offer - Don't Miss Out!
-                </p>
-                <div className="flex justify-center md:justify-start space-x-4">
-                  <div className="text-center">
-                    <span className="text-4xl font-bold">{timeLeft.hours}</span>
-                    <p className="text-sm">Hours</p>
-                  </div>
-                  <div className="text-center">
-                    <span className="text-4xl font-bold">
-                      {timeLeft.minutes}
-                    </span>
-                    <p className="text-sm">Minutes</p>
-                  </div>
-                  <div className="text-center">
-                    <span className="text-4xl font-bold">
-                      {timeLeft.seconds}
-                    </span>
-                    <p className="text-sm">Seconds</p>
-                  </div>
+          <h2 className="text-2xl font-bold mb-6">Shop By Category</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {["Fantasy", "Jewellery", "Rakhi", "Events"].map((category) => (
+              <motion.div
+                key={category}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                className="relative rounded-lg overflow-hidden aspect-square"
+              >
+                <img
+                  src={`https://images.unsplash.com/photo-1513161455079-24309fc384f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDF8fGluZHVzaWFuJTIwZXRoaGljJTIwZGVzaWdufGVufDB8fHx8MTY4ODgzMjEyNA&ixlib=rb-4.0.3&q=80&w=300`}
+                  alt={category}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <span className="text-white text-lg font-medium">
+                    {category}
+                  </span>
                 </div>
-              </div>
-              <button className="mt-8 bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition duration-300">
-                Shop Now
-              </button>
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Triple Banner Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Triple Banner Ad Section */}
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              image: "https://images.unsplash.com/photo-1583394838336-acd977736f50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDh8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMTIy&ixlib=rb-4.0.3&q=80&w=600",
+              title: "Designer Collection",
+              subtitle: "Up to 40% Off",
+            },
+            {
+              image: "https://images.unsplash.com/photo-1580910051009-fc74086b0e78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDN8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMTMy&ixlib=rb-4.0.3&q=80&w=600",
+              title: "New Arrivals",
+              subtitle: "Shop Latest Trends",
+            },
+            {
+              image: "https://images.unsplash.com/photo-1583394838336-acd977736f50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDV8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMTM1&ixlib=rb-4.0.3&q=80&w=600",
+              title: "Accessories",
+              subtitle: "Starting at ₹299",
+            },
+          ].map((banner, index) => (
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="relative h-80 rounded-lg overflow-hidden"
+              transition={{ delay: index * 0.1 }}
+              className="relative h-80 rounded-lg overflow-hidden group"
             >
               <img
-                src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1000"
-                alt="Special Offer"
-                className="w-full h-full object-cover"
+                src={banner.image}
+                alt={banner.title}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h3 className="text-2xl font-bold mb-2">Special Offer</h3>
-                  <p className="mb-4">Up to 30% off</p>
-                  <button className="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end">
+                <div className="p-6 text-white">
+                  <h3 className="text-2xl font-bold mb-2">{banner.title}</h3>
+                  <p className="text-lg mb-4">{banner.subtitle}</p>
+                  <button className="bg-white text-black px-6 py-2 rounded-md hover:bg-gray-100 transition-colors">
                     Shop Now
                   </button>
                 </div>
               </div>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-80 rounded-lg overflow-hidden"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1000"
-                alt="New Collection"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h3 className="text-2xl font-bold mb-2">New Collection</h3>
-                  <p className="mb-4">Spring 2024</p>
-                  <button className="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition duration-300">
-                    Explore
-                  </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Deal of the Day Banner */}
+      <div className="container mx-auto px-4 py-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="relative h-96 rounded-xl overflow-hidden"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1555529669-6a81aa2e3d47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDJ8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMjA2&ixlib=rb-4.0.3&q=80&w=1200"
+            alt="Deal of the Day"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent">
+            <div className="h-full flex items-center container mx-auto px-4">
+              <div className="max-w-lg text-white">
+                <div className="inline-block bg-red-600 px-4 py-2 rounded-md mb-4">
+                  Deal of the Day
                 </div>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="relative h-80 rounded-lg overflow-hidden"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&q=80&w=1000"
-                alt="Accessories"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h3 className="text-2xl font-bold mb-2">Accessories</h3>
-                  <p className="mb-4">Complete your look</p>
-                  <button className="bg-white text-black px-6 py-2 rounded-full hover:bg-gray-200 transition duration-300">
-                    View All
-                  </button>
+                <h2 className="text-4xl font-bold mb-4">
+                  Exclusive Designer Collection
+                </h2>
+                <p className="text-xl mb-6">
+                  Get up to 60% off on exclusive designer wear
+                </p>
+                <div className="flex space-x-4 mb-8">
+                  <div className="text-center">
+                    <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded">
+                      <span className="text-2xl font-bold">{timeLeft.hours}</span>
+                      <p className="text-sm">Hours</p>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded">
+                      <span className="text-2xl font-bold">{timeLeft.minutes}</span>
+                      <p className="text-sm">Minutes</p>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded">
+                      <span className="text-2xl font-bold">{timeLeft.seconds}</span>
+                      <p className="text-sm">Seconds</p>
+                    </div>
+                  </div>
                 </div>
+                <button className="bg-red-600 text-white px-8 py-3 rounded-md hover:bg-red-700 transition-colors">
+                  Shop Now
+                </button>
               </div>
-            </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Featured Categories with Hover Effect */}
+      <div className="bg-gray-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Featured Categories
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              {
+                image: "https://images.unsplash.com/photo-1608198093007-46a05ad446a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDl8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMTg1&ixlib=rb-4.0.3&q=80&w=300",
+                name: "Bridal Wear",
+                items: "250+ Items",
+              },
+              {
+                image: "https://images.unsplash.com/photo-1601860049476-3ba1f2843d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDN8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2VzfGVufDB8fHx8MTY4ODgzMjE5NQ&ixlib=rb-4.0.3&q=80&w=300",
+                name: "Traditional Sarees",
+                items: "180+ Items",
+              },
+              {
+                image: "https://images.unsplash.com/photo-1597589202982-6b7a735b7e64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDIyfHxpbmR1c2lhbiUyMGV0aG5pYyUyMGltYWdlc3xlbnwwfHx8fDE2ODg4MzIwOTk&ixlib=rb-4.0.3&q=80&w=300",
+                name: "Designer Lehengas",
+                items: "120+ Items",
+              },
+              {
+                image: "https://images.unsplash.com/photo-1605320735862-f8aa9a4904c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDR8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2VzfGVufDB8fHx8MTY4ODgzMjE5NA&ixlib=rb-4.0.3&q=80&w=300",
+                name: "Fusion Wear",
+                items: "150+ Items",
+              },
+            ].map((category, index) => (
+              <motion.div
+                key={category.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group cursor-pointer"
+              >
+                <div className="relative rounded-lg overflow-hidden">
+                  <div className="aspect-square">
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-6">
+                    <h3 className="text-xl font-bold text-white mb-1">
+                      {category.name}
+                    </h3>
+                    <p className="text-white/80 text-sm">{category.items}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Appointment Booking Section */}
-      <section className="relative h-[600px] overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1585914924626-15adac1e6402?q=80&w=2071&auto=format&fit=crop"
-          alt="Luxury Store Interior"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center px-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
-          >
-            SCHEDULE AN APPOINTMENT
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-white mb-8 max-w-2xl"
-          >
-            Click below to schedule a virtual or an in-store appointment at one
-            of our flagship stores.
-          </motion.p>
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-white text-black px-12 py-4 text-lg font-semibold hover:bg-gray-100 transition duration-300"
-          >
-            BOOK NOW
-          </motion.button>
+      {/* Newsletter Section with Enhanced Design */}
+      <div className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1555529669-6a81aa2e3d47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDJ8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMjA2&ixlib=rb-4.0.3&q=80&w=1200"
+            alt="Background"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-red-500 mix-blend-multiply" />
         </div>
-      </section>
-
-      {/* Footer Newsletter Section */}
-      <section className="bg-[#1a472a] py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-2xl md:text-3xl font-bold text-white text-center mb-8"
-            >
-              Enter Into The World of Luxury Fashion
-            </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col md:flex-row gap-4 items-stretch"
-            >
+        <div className="relative container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Join Our Newsletter
+            </h2>
+            <p className="text-white/90 text-lg mb-8">
+              Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals
+            </p>
+            <div className="flex gap-4">
               <input
                 type="email"
-                placeholder="Enter Your Email Here"
-                className="flex-grow bg-transparent border-b-2 border-white/30 text-white placeholder-white/70 py-3 px-4 focus:outline-none focus:border-white transition-colors"
+                placeholder="Enter your email"
+                className="flex-1 px-6 py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
               />
-              <button className="md:self-end" aria-label="Subscribe">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-8 h-8 text-white hover:text-gray-200 transition-colors"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
+              <button className="bg-red-600 text-white px-8 py-4 rounded-lg hover:bg-red-700 transition-colors">
+                Subscribe
               </button>
-            </motion.div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

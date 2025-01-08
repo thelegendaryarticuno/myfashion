@@ -45,7 +45,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login | Taylorzone-raiba</title>
+        <title>Login | TaylorZone By Raiba</title>
       </Helmet>
 
       <div className="min-h-screen bg-white flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
