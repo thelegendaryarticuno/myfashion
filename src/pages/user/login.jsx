@@ -45,7 +45,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login | Luxury Fashion</title>
+        <title>Login | Taylorzone-raiba</title>
       </Helmet>
 
       <div className="min-h-screen bg-white flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -57,10 +57,9 @@ const Login = () => {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-           
             <h2 className="text-3xl font-serif">Login</h2>
             <p className="mt-2 text-sm text-gray-600">
-              Welcome back to Luxury Fashion
+              Welcome back to Taylorzone by raiba
             </p>
           </motion.div>
 
@@ -143,7 +142,9 @@ const Login = () => {
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                <span className="px-2 bg-white text-gray-500">
+                  Or continue with
+                </span>
               </div>
             </div>
 
