@@ -387,8 +387,6 @@ const Hero = () => {
         </div>
       </section>
 
-
-      
       {/* Appointment Booking Section */}
       <section className="relative h-[600px] overflow-hidden">
         <img
@@ -411,7 +409,8 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-xl text-white mb-8 max-w-2xl"
           >
-            Click below to schedule a virtual or an in-store appointment at one of our flagship stores.
+            Click below to schedule a virtual or an in-store appointment at one
+            of our flagship stores.
           </motion.p>
           <motion.button
             initial={{ opacity: 0, y: 20 }}
@@ -447,10 +446,7 @@ const Hero = () => {
                 placeholder="Enter Your Email Here"
                 className="flex-grow bg-transparent border-b-2 border-white/30 text-white placeholder-white/70 py-3 px-4 focus:outline-none focus:border-white transition-colors"
               />
-              <button
-                className="md:self-end"
-                aria-label="Subscribe"
-              >
+              <button className="md:self-end" aria-label="Subscribe">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

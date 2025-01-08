@@ -1,284 +1,275 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedin,
-  FaGithub,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
-    subject: "",
-    message: "",
+    phoneNumber: "",
+    countryCode: "+91",
+    city: "",
+    comment: "",
+    newsletter: false,
+    terms: false,
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState("");
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const validateForm = () => {
     let tempErrors = {};
-    if (!formData.name.trim()) tempErrors.name = "Name is required";
-    if (!formData.email.trim()) {
+    if (!formData.fullName) tempErrors.fullName = "Full Name is required";
+    if (!formData.email) {
       tempErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       tempErrors.email = "Email is invalid";
     }
-    if (!formData.subject.trim()) tempErrors.subject = "Subject is required";
-    if (!formData.message.trim()) tempErrors.message = "Message is required";
+    if (!formData.phoneNumber)
+      tempErrors.phoneNumber = "Phone Number is required";
+    if (!formData.city) tempErrors.city = "City is required";
+    if (!formData.comment) tempErrors.comment = "Comment is required";
+    if (!formData.terms)
+      tempErrors.terms = "You must accept the terms and conditions";
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      setIsSubmitting(true);
-      // Simulating an API call
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        setSubmitMessage(
-          "Thank you for your message. We'll get back to you soon!"
-        );
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } catch (error) {
-        setSubmitMessage("Oops! Something went wrong. Please try again later.");
-      } finally {
-        setIsSubmitting(false);
-      }
+      // Handle form submission
+      console.log("Form submitted:", formData);
     }
   };
 
   return (
     <>
       <Helmet>
-        <title>Contact Us | Urban Edge Clothing</title>
+        <title>Contact Us | Luxury Fashion</title>
       </Helmet>
 
-      {/* Banner Section */}
-      <div className="bg-green-600 text-white py-4 text-center">
-        <p className="text-lg font-medium">Free Shipping on Orders Over $50!</p>
-      </div>
-
-      <div className="min-h-screen bg-white text-black py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="text-center mb-12"
           >
-            <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
-            <p className="text-xl text-center mb-12">
-              We'd love to hear from you. Get in touch with us!
+            <h1 className="text-3xl font-serif mb-6">Contact Us</h1>
+            <p className="text-gray-600">
+              If you have any queries related to our products or your order,
+              kindly call or WhatsApp us on{" "}
+              <a
+                href="tel:+919999913456"
+                className="text-[#8b6d3f] hover:underline"
+              >
+                +91 99999 13456
+              </a>{" "}
+              (Monday to Saturday - 9:30 am to 6:00 pm IST except on national
+              holidays), or email us at{" "}
+              <a
+                href="mailto:care@luxuryfashion.com"
+                className="text-[#8b6d3f] hover:underline"
+              >
+                care@luxuryfashion.com
+              </a>
+            </p>
+            <p className="text-gray-600 mt-4">
+              For any PR or media-related queries, write to us at:{" "}
+              <a
+                href="mailto:press@luxuryfashion.com"
+                className="text-[#8b6d3f] hover:underline"
+              >
+                press@luxuryfashion.com
+              </a>
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Form Fields */}
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50"
-                  />
-                  {errors.name && (
-                    <p className="mt-1 text-sm text-red-500">{errors.name}</p>
-                  )}
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50"
-                  />
-                  {errors.email && (
-                    <p className="mt-1 text-sm text-red-500">{errors.email}</p>
-                  )}
-                </div>
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium"
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50"
-                  />
-                  {errors.subject && (
-                    <p className="mt-1 text-sm text-red-500">
-                      {errors.subject}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-md bg-gray-800 border-gray-700 shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50"
-                  ></textarea>
-                  {errors.message && (
-                    <p className="mt-1 text-sm text-red-500">
-                      {errors.message}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                    <FiSend className="ml-2" />
-                  </button>
-                </div>
-              </form>
-              {submitMessage && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="mt-4 text-center text-green-500"
-                >
-                  {submitMessage}
-                </motion.p>
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
+            <div>
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                placeholder="Full Name *"
+                className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f]"
+              />
+              {errors.fullName && (
+                <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
               )}
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="space-y-8"
-            >
-              {/* Contact Info Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h2 className="text-2xl font-bold mb-4">Contact Information</h2>
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <FiMail className="text-red-500 mr-4" />
-                    <span>support@urbanedge.com</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FiPhone className="text-red-500 mr-4" />
-                    <span>+1 (555) 123-4567</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FiMapPin className="text-red-500 mr-4" />
-                    <span>123 Fashion Street, Style City, SC 12345</span>
-                  </div>
-                </div>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email *"
+                  className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f]"
+                />
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                )}
               </div>
 
-              {/* Google Maps Section */}
-              <div className="w-full h-72 rounded-lg overflow-hidden shadow-lg">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.527559461264!2d-122.0842499!3d37.4220652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb7f16e9e6e8b%3A0xdeadbeef!2sGoogleplex!5e0!3m2!1sen!2sus!4v1619528747825!5m2!1sen!2sus"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                ></iframe>
+              <div className="flex gap-2">
+                <select
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleChange}
+                  className="w-24 border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f]"
+                >
+                  <option value="+91">+91(IN)</option>
+                  <option value="+1">+1(US)</option>
+                  <option value="+44">+44(UK)</option>
+                </select>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  placeholder="Phone Number *"
+                  className="flex-1 border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f]"
+                />
               </div>
+            </div>
 
-              {/* Social Media Section */}
-              <div>
-                <h2 className="text-2xl font-bold mb-4">Follow Us</h2>
-                <div className="flex space-x-4">
-                  {/* Social Media Links */}
-                  <a
-                    href="#"
-                    aria-label="Facebook"
-                    className="text-black hover:text-blue-600 transition-colors"
-                  >
-                    <FaFacebook className="w-6 h-6" />
+            <div>
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                placeholder="City *"
+                className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f]"
+              />
+              {errors.city && (
+                <p className="mt-1 text-sm text-red-600">{errors.city}</p>
+              )}
+            </div>
+
+            <div>
+              <textarea
+                name="comment"
+                value={formData.comment}
+                onChange={handleChange}
+                placeholder="Comment *"
+                rows="4"
+                className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f]"
+              ></textarea>
+              {errors.comment && (
+                <p className="mt-1 text-sm text-red-600">{errors.comment}</p>
+              )}
+            </div>
+
+            <div className="space-y-4">
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="newsletter"
+                  checked={formData.newsletter}
+                  onChange={handleChange}
+                  className="mt-1"
+                />
+                <span className="text-sm text-gray-600">
+                  Sign up for our newsletters and stay up to date on the latest
+                  news, collections and events.
+                </span>
+              </label>
+
+              <label className="flex items-start gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="terms"
+                  checked={formData.terms}
+                  onChange={handleChange}
+                  className="mt-1"
+                />
+                <span className="text-sm text-gray-600">
+                  I understand and agree that registration on or use of the site
+                  constitutes agreement to its{" "}
+                  <a href="#" className="text-[#8b6d3f] hover:underline">
+                    Privacy Policy
+                  </a>{" "}
+                  and{" "}
+                  <a href="#" className="text-[#8b6d3f] hover:underline">
+                    Terms and Conditions
                   </a>
-                  <a
-                    href="#"
-                    aria-label="Instagram"
-                    className="text-black hover:text-pink-500 transition-colors"
-                  >
-                    <FaInstagram className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="Twitter"
-                    className="text-black hover:text-blue-400 transition-colors"
-                  >
-                    <FaTwitter className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="LinkedIn"
-                    className="text-black hover:text-blue-700 transition-colors"
-                  >
-                    <FaLinkedin className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="GitHub"
-                    className="text-black hover:text-gray-800 transition-colors"
-                  >
-                    <FaGithub className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="WhatsApp"
-                    className="text-black hover:text-green-500 transition-colors"
-                  >
-                    <FaWhatsapp className="w-6 h-6" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+                  .
+                </span>
+              </label>
+              {errors.terms && (
+                <p className="text-sm text-red-600">{errors.terms}</p>
+              )}
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="w-full bg-black text-white py-3 px-4 hover:bg-gray-800 transition-colors"
+              >
+                Submit
+              </button>
+            </div>
+          </motion.form>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-12 text-sm text-gray-600 space-y-4"
+          >
+            <div>
+              <h2 className="font-medium mb-2">
+                House Of Luxury Fashion Private Limited
+              </h2>
+              <p>CIN: U17116MH1995PTC086449</p>
+            </div>
+
+            <div>
+              <h3 className="font-medium mb-1">Registered Office Address:</h3>
+              <p>20/C Pali Village, Opp. SAISA Club, Off 16th Rd, Bandra (W)</p>
+            </div>
+
+            <div>
+              <h3 className="font-medium mb-1">Corporate Office Address:</h3>
+              <p>
+                Plot No B 8A/1/1, TTC Ind. Area, MIDC, Rabale, Navi Mumbai,
+                India – 400701
+              </p>
+            </div>
+
+            <p className="text-xs">
+              This site is protected by reCAPTCHA and the Google{" "}
+              <a href="#" className="text-[#8b6d3f] hover:underline">
+                Privacy Policy
+              </a>{" "}
+              and{" "}
+              <a href="#" className="text-[#8b6d3f] hover:underline">
+                Terms of Service
+              </a>{" "}
+              apply.
+            </p>
+          </motion.div>
         </div>
       </div>
     </>

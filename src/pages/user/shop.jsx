@@ -65,7 +65,7 @@ const Shop = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Shop Header Banner with Sliding Effect */}
-      <div className="relative h-[40vh] bg-emerald-800 overflow-hidden">
+      <div className="relative h-[40vh] bg-emerald-600 overflow-hidden">
         <div
           className="absolute top-0 left-0 w-full h-full flex transition-transform duration-1000 ease-in-out"
           style={{

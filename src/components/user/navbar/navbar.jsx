@@ -12,15 +12,27 @@ import { AnimatePresence, motion } from "framer-motion";
 const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const searchRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsUserDropdownOpen(false);
+      }
+    };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const toggleSearchOverlay = () => {
@@ -31,34 +43,36 @@ const Navbar = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
+  const toggleUserDropdown = () => {
+    setIsUserDropdownOpen((prev) => !prev);
+  };
+
   return (
     <>
       {/* Announcement Banner */}
-<div className="bg-[#4E0F3E] text-white py-2 text-center text-sm relative overflow-hidden">
-  <div className="animate-marquee flex">
-    <span>FREE SHIPPING ON ORDERS OVER $100</span>&nbsp;|&nbsp;
-    <span>NEW SEASON SALE STARTS NOW! DON'T MISS OUT.</span>&nbsp;|&nbsp;
-    <span>LIMITED TIME OFFER, SHOP NOW!</span>&nbsp;|&nbsp;
-    <span>EXCLUSIVE DEALS JUST FOR YOU, HURRY!</span>
-  </div>
-</div>
+      <div className="bg-[#4E0F3E] text-white py-2 text-center text-sm relative overflow-hidden">
+        <div className="animate-marquee flex">
+          <span>FREE SHIPPING ON ORDERS OVER $100</span>&nbsp;|&nbsp;
+          <span>NEW SEASON SALE STARTS NOW! DON'T MISS OUT.</span>&nbsp;|&nbsp;
+          <span>LIMITED TIME OFFER, SHOP NOW!</span>&nbsp;|&nbsp;
+          <span>EXCLUSIVE DEALS JUST FOR YOU, HURRY!</span>
+        </div>
+      </div>
 
-{/* Tailwind CSS with Custom Animation */}
-<style jsx>{`
-  @keyframes marquee {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  .animate-marquee {
-    animation: marquee 15s linear infinite;
-  }
-`}</style>
-
+      {/* Tailwind CSS with Custom Animation */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        .animate-marquee {
+          animation: marquee 15s linear infinite;
+        }
+      `}</style>
 
       <nav
         className={`sticky top-0 z-40 w-full border-b border-gray-200 bg-white/80 backdrop-blur-lg transition-all duration-300 ${
@@ -115,124 +129,62 @@ const Navbar = () => {
                   Search
                 </span>
               </button>
-              <button
-                type="button"
-                className="text-[#4E0F3E] hover:text-pink-600 transition relative group"
-                aria-label="User account"
-              >
-                <FiUser className="h-5 w-5" />
-                <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                  Account
-                </span>
-              </button>
+
+              {/* User Dropdown */}
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  type="button"
+                  className="text-[#4E0F3E] hover:text-pink-600 transition relative group"
+                  aria-label="User account"
+                  onClick={toggleUserDropdown}
+                >
+                  <FiUser className="h-5 w-5" />
+                  <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                    Account
+                  </span>
+                </button>
+                <AnimatePresence>
+                  {isUserDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5"
+                    >
+                      <a
+                        href="/login"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Login
+                      </a>
+                      <a
+                        href="/signup"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Signup
+                      </a>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
               <button
                 type="button"
                 className="text-[#4E0F3E] hover:text-pink-600 transition relative group"
                 aria-label="Wishlist"
               >
-                <div className="relative">
-                  <FiHeart className="h-5 w-5" />
-                  <span className="absolute -top-2 -right-2 h-4 w-4 rounded-full bg-pink-600 text-white text-xs flex items-center justify-center">
-                    0
-                  </span>
-                </div>
-                <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                  Wishlist
-                </span>
+                <FiHeart className="h-5 w-5" />
               </button>
               <button
                 type="button"
                 className="text-[#4E0F3E] hover:text-pink-600 transition relative group"
                 aria-label="Shopping cart"
               >
-                <div className="relative">
-                  <FiShoppingCart className="h-5 w-5" />
-                  <span className="absolute -top-2 -right-2 h-4 w-4 rounded-full bg-pink-600 text-white text-xs flex items-center justify-center">
-                    0
-                  </span>
-                </div>
-                <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                  Cart
-                </span>
+                <FiShoppingCart className="h-5 w-5" />
               </button>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50 md:hidden"
-            >
-              <div className="p-4 space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-xl font-serif text-[#4E0F3E]">
-                    AMBRAE
-                  </span>
-                  <button onClick={toggleMenu}>
-                    <FiX className="h-6 w-6" />
-                  </button>
-                </div>
-                <div className="space-y-2">
-                  {[
-                    { href: "/new-arrivals", label: "New Arrivals" },
-                    { href: "/best-sellers", label: "Best Sellers" },
-                    { href: "/shop", label: "Shop" },
-                    { href: "/contact", label: "Contact Us" },
-                  ].map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className="block px-4 py-2 text-sm text-[#4E0F3E] hover:bg-gray-100 rounded-md"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Search Overlay */}
-        <AnimatePresence>
-          {isSearchOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-start justify-center pt-20"
-            >
-              <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
-                className="bg-white p-6 rounded-lg w-full max-w-2xl mx-4 relative"
-                ref={searchRef}
-              >
-                <button
-                  type="button"
-                  className="absolute top-3 right-3 text-gray-600 hover:text-pink-600 transition"
-                  onClick={toggleSearchOverlay}
-                >
-                  <FiX className="h-6 w-6" />
-                </button>
-                <div className="relative">
-                  <input
-                    type="search"
-                    placeholder="Search for products..."
-                    className="w-full pl-10 pr-4 py-3 text-gray-900 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600"
-                  />
-                  <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </nav>
     </>
   );

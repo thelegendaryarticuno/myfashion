@@ -5,7 +5,8 @@ import Hero from "./context/Hero";
 import Footer from "./context/Footer";
 import Shop from "./pages/user/shop";
 import ContactUs from "./pages/user/contactus";
-
+import Login from "./pages/user/login";
+import Signup from "./pages/user/signup";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route path="/" element={<Hero />} />
           <Route path="/shop" element={<Shop></Shop>} />{" "}
           <Route path="contact" element={<ContactUs></ContactUs>} />{" "}
-     
+          <Route path="signup" element={<Signup></Signup>} />{" "}
+          <Route path="login" element={<Login></Login>} />{" "}
         </Routes>
         <Footer />
       </div>
