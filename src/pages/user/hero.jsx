@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -80,6 +81,9 @@ const Hero = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Home | TailorZone By Raiba</title>
+      </Helmet>
       {/* Main Hero Section with Sliding Banners */}
       <section className="relative h-screen overflow-hidden">
         <AnimatePresence initial={false}>

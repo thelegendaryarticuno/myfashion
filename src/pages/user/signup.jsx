@@ -62,7 +62,7 @@ const Signup = () => {
   return (
     <>
       <Helmet>
-        <title>Sign Up | Luxury Fashion</title>
+        <title>Sign Up | TailorZone By Raiba</title>
       </Helmet>
 
       <div className="min-h-screen bg-white flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">

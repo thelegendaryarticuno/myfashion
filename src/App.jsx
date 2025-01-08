@@ -7,10 +7,14 @@ import Shop from "./pages/user/shop";
 import ContactUs from "./pages/user/contactus";
 import Login from "./pages/user/login";
 import Signup from "./pages/user/signup";
+import { AuthProvider } from "./context/AuthContext";
+
 
 function App() {
   return (
+
     <Router>
+      <AuthProvider>
       <div className="App">
         <Navbar />
         <Routes>
@@ -22,7 +26,9 @@ function App() {
           <Route path="login" element={<Login></Login>} />{" "}
         </Routes>
         <Footer />
+
       </div>
+      </AuthProvider>
     </Router>
   );
 }

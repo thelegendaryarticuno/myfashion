@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 import {
   FiFilter,
   FiGrid,
@@ -64,6 +65,9 @@ const Shop = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Helmet>
+        <title>Shop | TailorZone By Raiba</title>
+      </Helmet>
       {/* Shop Header Banner with Sliding Effect */}
       <div className="relative h-[40vh] bg-emerald-600 overflow-hidden">
         <div

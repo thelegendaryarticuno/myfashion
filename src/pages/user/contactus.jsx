@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 
+
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -54,7 +55,7 @@ const ContactUs = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us | Luxury Fashion</title>
+        <title>Contact Us | TailorZone By Raiba</title>
       </Helmet>
 
       <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8">
