@@ -73,10 +73,9 @@ const Signup = () => {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-           
             <h2 className="text-3xl font-serif">Create an Account</h2>
             <p className="mt-2 text-sm text-gray-600">
-              Join the world of Luxury Fashion
+              Join the world of Taylorzone by raiba
             </p>
           </motion.div>
 
