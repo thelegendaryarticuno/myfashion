@@ -1,8 +1,8 @@
-import React from 'react';
-import Navbar from './context/Navbar';
-import Hero from './context/Hero';
-import Footer from './context/Footer';
-import SearchBar from './context/SearchBar';
+import React from "react";
+import Navbar from "./components/user/navbar/navbar";
+import Hero from "./context/Hero";
+import Footer from "./context/Footer";
+import SearchBar from "./components/user/navbar/searchBar";
 function App() {
   return (
     <div className="App">
@@ -14,4 +14,3 @@ function App() {
 }
 
 export default App;
-
