@@ -45,9 +45,10 @@ const Shop = () => {
   ];
 
   const bannerImages = [
-    "https://images.unsplash.com/photo-1512434607501-2d3d23a6f1f2?auto=format&fit=crop&w=500&h=300&q=80",
-    "https://images.unsplash.com/photo-1521747116042-e72c24e8f1f9?auto=format&fit=crop&w=500&h=300&q=80",
     "https://images.unsplash.com/photo-1593642532400-68b6fcd7ccff?auto=format&fit=crop&w=500&h=300&q=80",
+    "https://cdn.igp.com/f_auto,q_auto,t_pnopt12prodlp/products/p-modish-fashion-necklace-25631-m.jpg",
+
+    "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3",
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
