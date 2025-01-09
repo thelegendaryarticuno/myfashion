@@ -21,7 +21,6 @@ import CouponPage from "./pages/admin/coupon";
 import Reviews from "./pages/admin/review";
 import SEO from "./pages/admin/SEO";
 import ShoppingCartPage from "./pages/user/cart";
-import ProductDetails from "./pages/user/productDetails";
 import Checkout from "./pages/user/checkout";
 
 //updated website
