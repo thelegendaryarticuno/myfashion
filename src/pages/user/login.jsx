@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
-    email: "",
+    emailOrMobile: "",
     password: "",
     rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -19,14 +24,19 @@ const Login = () => {
       ...prevState,
       [name]: type === "checkbox" ? checked : value,
     }));
+    // Clear errors when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+    setError(''); // Clear general error message
   };
 
   const validateForm = () => {
     let tempErrors = {};
-    if (!formData.email) {
-      tempErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      tempErrors.email = "Email is invalid";
+    if (!formData.emailOrMobile) {
+      tempErrors.emailOrMobile = "Email or mobile number is required";
+    } else if (formData.emailOrMobile.includes('@') && !/\S+@\S+\.\S+/.test(formData.emailOrMobile)) {
+      tempErrors.emailOrMobile = "Email is invalid";
     }
     if (!formData.password) {
       tempErrors.password = "Password is required";
@@ -35,10 +45,18 @@ const Login = () => {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
+      try {
+        const response = await login(formData.emailOrMobile, formData.password);
+        if (response === 'Login successful') {
+          navigate('/');
+        }
+      } catch (error) {
+        setError('Login failed. Please check your credentials.');
+        console.error('Login failed:', error);
+      }
     }
   };
 
@@ -63,6 +81,12 @@ const Login = () => {
             </p>
           </motion.div>
 
+          {error && (
+            <div className="text-red-600 text-sm text-center bg-red-50 p-3 rounded">
+              {error}
+            </div>
+          )}
+
           <motion.form
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,15 +96,15 @@ const Login = () => {
           >
             <div>
               <input
-                type="email"
-                name="email"
-                value={formData.email}
+                type="text"
+                name="emailOrMobile"
+                value={formData.emailOrMobile}
                 onChange={handleChange}
-                placeholder="Email Address *"
+                placeholder="Email Address or Mobile *"
                 className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors"
               />
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              {errors.emailOrMobile && (
+                <p className="mt-1 text-sm text-red-600">{errors.emailOrMobile}</p>
               )}
             </div>
 
