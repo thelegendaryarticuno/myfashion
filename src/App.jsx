@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import Hero from "./pages/user/hero";
@@ -9,6 +9,7 @@ import Login from "./pages/user/login";
 import Signup from "./pages/user/signup";
 import BestSeller from "./pages/user/BestSeller";
 import NewArrival from "./pages/user/NewArrival";
+import ProductDetails from "./pages/user/productdetails"; 
 import { AuthProvider } from "./context/AuthContext";
 import LoginPage from "./pages/admin/login";
 import DashboardPage from "./pages/admin/dashboard";
@@ -34,7 +35,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/best-sellers" element={<BestSeller />} />
             <Route path="/new-arrivals" element={<NewArrival />} />
-            {/* Add other user routes here */}
+            <Route path="/product/:productId" element={<ProductDetails />} /> {/* New ProductDetails route */}
           </Route>
 
           {/* Admin Routes with AdminLayout */}
@@ -43,16 +44,13 @@ function App() {
             <Route path="/admin" element={<DashboardPage />} />
             <Route path="/admin/products" element={<Product />} />
             <Route path="/admin/complaints" element={<Complaints />} />
-          <Route path="/admin/orders" element={<Orders />} />
-          <Route path="/admin/customers" element={<Customers />} />
-          <Route path="/seller/coupons" element={<CouponPage />} />
-          <Route path="/admin/reviews" element={<Reviews />} />
-          <Route path="/admin/SEO" element={<SEO />} />
-
-            {/* Add other admin routes here */}
+            <Route path="/admin/orders" element={<Orders />} />
+            <Route path="/admin/customers" element={<Customers />} />
+            <Route path="/seller/coupons" element={<CouponPage />} />
+            <Route path="/admin/reviews" element={<Reviews />} />
+            <Route path="/admin/SEO" element={<SEO />} />
           </Route>
         </Routes>
-        
       </AuthProvider>
     </Router>
   );
