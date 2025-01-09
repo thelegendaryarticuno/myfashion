@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const { signup } = useAuth();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
+    mobile: "",
     password: "",
     confirmPassword: "",
     agreeTerms: false,
@@ -16,6 +19,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -23,39 +27,45 @@ const Signup = () => {
       ...prevState,
       [name]: type === "checkbox" ? checked : value,
     }));
+    // Clear any existing errors
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+    setError('');
   };
 
   const validateForm = () => {
     let tempErrors = {};
-    if (!formData.firstName.trim())
-      tempErrors.firstName = "First name is required";
-    if (!formData.lastName.trim())
-      tempErrors.lastName = "Last name is required";
+    if (!formData.fullName.trim())
+      tempErrors.fullName = "Full name is required";
     if (!formData.email) {
       tempErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       tempErrors.email = "Email is invalid";
     }
+    if (!formData.mobile) {
+      tempErrors.mobile = "Mobile number is required";
+    }
     if (!formData.password) {
       tempErrors.password = "Password is required";
-    } else if (formData.password.length < 8) {
-      tempErrors.password = "Password must be at least 8 characters long";
     }
     if (formData.password !== formData.confirmPassword) {
       tempErrors.confirmPassword = "Passwords do not match";
-    }
-    if (!formData.agreeTerms) {
-      tempErrors.agreeTerms = "You must agree to the terms and conditions";
     }
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // Handle signup logic here
-      console.log("Form submitted:", formData);
+      try {
+        await signup(formData.fullName, formData.email, formData.password);
+        navigate('/');
+      } catch (err) {
+        setError('Error signing up. Try again.');
+        console.error('Signup error:', err);
+      }
     }
   };
 
@@ -79,6 +89,12 @@ const Signup = () => {
             </p>
           </motion.div>
 
+          {error && (
+            <div className="text-red-600 text-sm text-center bg-red-50 p-3 rounded">
+              {error}
+            </div>
+          )}
+
           <motion.form
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -86,35 +102,18 @@ const Signup = () => {
             className="space-y-6"
             onSubmit={handleSubmit}
           >
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  placeholder="First Name *"
-                  className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors"
-                />
-                {errors.firstName && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.firstName}
-                  </p>
-                )}
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  placeholder="Last Name *"
-                  className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors"
-                />
-                {errors.lastName && (
-                  <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
-                )}
-              </div>
+            <div>
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                placeholder="Full Name *"
+                className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors"
+              />
+              {errors.fullName && (
+                <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>
+              )}
             </div>
 
             <div>
@@ -128,6 +127,20 @@ const Signup = () => {
               />
               {errors.email && (
                 <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              )}
+            </div>
+
+            <div>
+              <input
+                type="tel"
+                name="mobile"
+                value={formData.mobile}
+                onChange={handleChange}
+                placeholder="Mobile Number *"
+                className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors"
+              />
+              {errors.mobile && (
+                <p className="mt-1 text-sm text-red-600">{errors.mobile}</p>
               )}
             </div>
 
@@ -183,32 +196,6 @@ const Signup = () => {
               )}
             </div>
 
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                name="agreeTerms"
-                checked={formData.agreeTerms}
-                onChange={handleChange}
-                className="h-4 w-4 text-[#8b6d3f] focus:ring-[#8b6d3f] border-gray-300 rounded"
-              />
-              <label
-                htmlFor="agreeTerms"
-                className="ml-2 block text-sm text-gray-900"
-              >
-                I agree to the{" "}
-                <a href="#" className="text-[#8b6d3f] hover:underline">
-                  Terms of Service
-                </a>{" "}
-                and{" "}
-                <a href="#" className="text-[#8b6d3f] hover:underline">
-                  Privacy Policy
-                </a>
-              </label>
-            </div>
-            {errors.agreeTerms && (
-              <p className="mt-1 text-sm text-red-600">{errors.agreeTerms}</p>
-            )}
-
             <div>
               <button
                 type="submit"
@@ -218,7 +205,6 @@ const Signup = () => {
               </button>
             </div>
 
-            
             <p className="text-center text-sm text-gray-600">
               Already have an account?{" "}
               <Link to="/login" className="text-[#8b6d3f] hover:underline">
@@ -226,6 +212,22 @@ const Signup = () => {
               </Link>
             </p>
           </motion.form>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-xs text-center text-gray-600"
+          >
+            By continuing, you agree to our{" "}
+            <a href="#" className="text-[#8b6d3f] hover:underline">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="#" className="text-[#8b6d3f] hover:underline">
+              Privacy Policy
+            </a>
+          </motion.p>
         </div>
       </div>
     </>
