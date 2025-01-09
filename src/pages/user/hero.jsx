@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
+import { Link } from 'react-router-dom';
+
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -125,42 +127,41 @@ const Hero = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {flashSaleProducts.map((product, index) => (
-              <motion.div
-                key={product.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="relative aspect-[3/4]">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {product.discount}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-medium mb-3 text-gray-800">
-                    {product.title}
-                  </h3>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl font-bold text-red-600">
-                      ₹{product.salePrice}
-                    </span>
-                    <span className="text-gray-400 line-through">
-                      ₹{product.originalPrice}
-                    </span>
-                  </div>
-                  <button className="w-full mt-4 bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors">
-                    Add to Cart
-                  </button>
-                </div>
-              </motion.div>
-            ))}
+  {flashSaleProducts.map((product, index) => (
+    <motion.div
+      key={product.title}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+    >
+      <Link to={`/product/${product.id}`} state={{ product }}>
+        <div className="relative aspect-[3/4]">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+            {product.discount}
+          </div>
+        </div>
+        <div className="p-6">
+          <h3 className="text-lg font-medium mb-3 text-gray-800">
+            {product.title}
+          </h3>
+          <div className="flex items-center space-x-3">
+            <span className="text-2xl font-bold text-red-600">
+              ₹{product.salePrice}
+            </span>
+            <span className="text-gray-400 line-through">
+              ₹{product.originalPrice}
+            </span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  ))}
           </div>
         </div>
       </div>

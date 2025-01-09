@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import Hero from "./pages/user/hero";
@@ -9,6 +9,7 @@ import Login from "./pages/user/login";
 import Signup from "./pages/user/signup";
 import BestSeller from "./pages/user/BestSeller";
 import NewArrival from "./pages/user/NewArrival";
+import ProductDetails from "./pages/user/productdetails"; 
 import { AuthProvider } from "./context/AuthContext";
 import LoginPage from "./pages/admin/login";
 import DashboardPage from "./pages/admin/dashboard";
@@ -54,11 +55,8 @@ function App() {
           <Route path="/seller/coupons/:sellerId" element={<CouponPage />} />
           <Route path="/admin/reviews/:sellerId" element={<Reviews />} />
           <Route path="/admin/SEO/:sellerId" element={<SEO />} />
-
-            {/* Add other admin routes here */}
           </Route>
         </Routes>
-        
       </AuthProvider>
     </Router>
   );
