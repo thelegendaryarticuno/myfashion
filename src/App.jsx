@@ -19,6 +19,9 @@ import Orders from "./pages/admin/order";
 import CouponPage from "./pages/admin/coupon";
 import Reviews from "./pages/admin/review";
 import SEO from "./pages/admin/SEO";
+import ShoppingCartPage from "./pages/user/cart";
+import ProductDetails from "./pages/user/productDetails";
+import Checkout from "./pages/user/checkout";
 
 function App() {
   return (
@@ -32,15 +35,18 @@ function App() {
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<ShoppingCartPage />} />
             <Route path="/best-sellers" element={<BestSeller />} />
             <Route path="/new-arrivals" element={<NewArrival />} />
+            <Route path="/:productId" element={<ProductDetails />} />
+            <Route path="/checkout" element={<Checkout />} />
             {/* Add other user routes here */}
           </Route>
 
           {/* Admin Routes with AdminLayout */}
           <Route element={<AdminLayout />}>
-            <Route path="/admin/login" element={<LoginPage />} />
-            <Route path="/admin" element={<DashboardPage />} />
+            <Route path="/seller/login" element={<LoginPage />} />
+            <Route path="/admin/:sellerId" element={<DashboardPage />} />
             <Route path="/admin/products" element={<Product />} />
             <Route path="/admin/complaints" element={<Complaints />} />
           <Route path="/admin/orders" element={<Orders />} />

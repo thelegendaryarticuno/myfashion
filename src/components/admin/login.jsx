@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Eye, EyeOff, Lock, Mail, User, Phone } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ const AdminLogin = () => {
 
     try {
       const response = await fetch(
-        "https://myfashion-backend-axwh.onrender.com/otp/send-otp",
+        `${API_URL}/otp/send-otp`,
         {
           method: "POST",
           headers: {
@@ -55,7 +55,7 @@ const AdminLogin = () => {
   const handleVerifyOtp = async (otp) => {
     try {
       const response = await fetch(
-        "https://myfashion-backend-axwh.onrender.com/otp/verify-otp",
+        `${API_URL}/otp/verify-otp`,
         {
           method: "POST",
           headers: {
@@ -88,7 +88,7 @@ const AdminLogin = () => {
   const handleResendOtp = async () => {
     try {
       const response = await fetch(
-        "https://myfashion-backend-axwh.onrender.com/otp/resend-otp",
+        `${API_URL}/otp/resend-otp`,
         {
           method: "PUT",
           headers: {
@@ -137,7 +137,7 @@ const AdminLogin = () => {
       const data = await response.json();
 
       if (response.ok && data.message === "Login successful") {
-        navigate(`/admin/${data.sellerId}`);
+        navigate(`/admin`);
       } else {
         setError(data.message || "Login failed. Please try again.");
       }
@@ -155,7 +155,6 @@ const AdminLogin = () => {
 
       <div className="min-h-screen bg-white flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full mx-auto space-y-8">
-          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -180,47 +179,51 @@ const AdminLogin = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-6"
           >
-            <div>
+            <div className="relative">
+              <User className="absolute left-1 top-2 text-gray-400 h-5 w-5" />
               <input
                 type="text"
                 name="sellerId"
                 placeholder="Seller ID *"
                 required
-                className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors"
+                className="w-full border-b border-gray-300 py-2 pl-8 focus:outline-none focus:border-[#8b6d3f] transition-colors"
                 value={sellerId}
                 onChange={(e) => setSellerId(e.target.value)}
               />
             </div>
 
-            <div>
+            <div className="relative">
+              <Mail className="absolute left-1 top-2 text-gray-400 h-5 w-5" />
               <input
                 type="email"
                 name="emailOrPhone"
                 placeholder="Email Address *"
                 required
-                className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors"
+                className="w-full border-b border-gray-300 py-2 pl-8 focus:outline-none focus:border-[#8b6d3f] transition-colors"
                 value={emailOrPhone}
                 onChange={(e) => setEmailOrPhone(e.target.value)}
               />
             </div>
 
-            { !otpSent ? (
-              <button
+            {!otpSent ? (
+              <motion.button
                 type="button"
                 className="w-full bg-black text-white py-3 px-4 hover:bg-gray-800 transition-colors"
                 onClick={handleSendOtp}
+                whileTap={{ scale: 0.95 }}
               >
                 Send OTP
-              </button>
+              </motion.button>
             ) : (
-              <div>
+              <div className="relative">
+                <Lock className="absolute left-1 top-2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
                   name="otp"
                   placeholder="Enter OTP *"
                   maxLength="6"
                   required
-                  className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors"
+                  className="w-full border-b border-gray-300 py-2 pl-8 focus:outline-none focus:border-[#8b6d3f] transition-colors"
                   value={otp}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "");
@@ -236,22 +239,24 @@ const AdminLogin = () => {
             )}
 
             {showResendButton && (
-              <button
+              <motion.button
                 type="button"
                 className="w-full bg-black text-white py-3 px-4 hover:bg-gray-800 transition-colors"
                 onClick={handleResendOtp}
+                whileTap={{ scale: 0.95 }}
               >
                 Resend OTP
-              </button>
+              </motion.button>
             )}
 
             <div className="relative">
+              <Lock className="absolute left-1 top-2 text-gray-400 h-5 w-5" />
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Password *"
                 required
-                className="w-full border-b border-gray-300 py-2 px-1 focus:outline-none focus:border-[#8b6d3f] transition-colors pr-10"
+                className="w-full border-b border-gray-300 py-2 pl-8 focus:outline-none focus:border-[#8b6d3f] transition-colors pr-10"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -264,18 +269,17 @@ const AdminLogin = () => {
               </button>
             </div>
 
-            <div>
-              <button
-                type="button"
-                className={`w-full bg-black text-white py-3 px-4 hover:bg-gray-800 transition-colors ${
-                  !otpVerified ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-                onClick={handleLogin}
-                disabled={!otpVerified}
-              >
-                Login
-              </button>
-            </div>
+            <motion.button
+              type="button"
+              className={`w-full bg-black text-white py-3 px-4 hover:bg-gray-800 transition-colors ${
+                !otpVerified ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              onClick={handleLogin}
+              disabled={!otpVerified}
+              whileTap={{ scale: otpVerified ? 0.95 : 1 }}
+            >
+              Login
+            </motion.button>
           </motion.form>
 
           <motion.p
