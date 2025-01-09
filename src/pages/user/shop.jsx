@@ -9,6 +9,7 @@ import {
   FiShoppingCart,
   FiStar,
 } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
   // Existing state declarations
@@ -20,6 +21,7 @@ const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [sortOption, setSortOption] = useState("default");
   const [hoveredProduct, setHoveredProduct] = useState(null);
+  const navigate = useNavigate()
   
   // New state for price filters
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
@@ -364,6 +366,7 @@ const Shop = () => {
                     }`}
                     onMouseEnter={() => setHoveredProduct(product.productId)}
                     onMouseLeave={() => setHoveredProduct(null)}
+                    onClick={()=>navigate(`/${product.productId}`)}
                   >
                     <div
                       className={`relative ${
