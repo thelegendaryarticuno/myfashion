@@ -28,7 +28,7 @@ const OrderDetailsModal = ({ order, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-pink-600">Order Details</h2>
+          <h2 className="text-xl font-bold text-white-600">Order Details</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -73,7 +73,7 @@ const OrderDetailsModal = ({ order, onClose }) => {
 
           <div className="flex justify-between items-center">
             <p className="text-sm text-gray-600">Total Price</p>
-            <p className="text-xl font-bold text-pink-600">${order.price}</p>
+            <p className="text-xl font-bold text-white-600">${order.price}</p>
           </div>
         </div>
       </div>
@@ -197,36 +197,36 @@ const Orders = () => {
         <title>Orders | Admin | Mera Bestie</title>
       </Helmet>
       <Sidebar />
-      <div className="flex-1 p-8 ml-[5rem] lg:ml-64 bg-pink-50 min-h-screen">
+      <div className="flex-1 p-8 ml-[5rem] lg:ml-64 bg-white min-h-screen">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-pink-700 mb-4">Order Management</h1>
+          <h1 className="text-3xl font-bold text-white-700 mb-4">Order Management</h1>
           <div className="w-full max-w-md mx-auto">
             <div className="relative">
               <input
                 type="text"
                 placeholder="Search by order ID or customer name..."
-                className="w-full pl-10 pr-4 py-3 border-2 border-pink-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300"
+                className="w-full pl-10 pr-4 py-3 border-2 border-white-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-white-300"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <Search className="absolute left-3 top-3.5 text-pink-400" size={20} />
+              <Search className="absolute left-3 top-3.5 text-white-400" size={20} />
             </div>
           </div>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg overflow-x-auto">
           <table className="min-w-full table-auto">
-            <thead className="bg-pink-100">
+            <thead className="bg-white-100">
               <tr>
                 {['orderId', 'date', 'time', 'name', 'email', 'price', 'status'].map((key) => (
                   <th
                     key={key}
                     onClick={() => handleSort(key)}
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-pink-200 transition"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-white-200 transition"
                   >
                     <div className="flex items-center">
                       {key.charAt(0).toUpperCase() + key.slice(1)}
-                      <ArrowUpDown size={14} className="ml-1 text-pink-500" />
+                      <ArrowUpDown size={14} className="ml-1 text-white-500" />
                     </div>
                   </th>
                 ))}
@@ -237,7 +237,7 @@ const Orders = () => {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredOrders.map((order) => (
-                <tr key={order.orderId} className="hover:bg-pink-50 transition">
+                <tr key={order.orderId} className="hover:bg-white-50 transition">
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     {order.orderId}
                   </td>
@@ -262,7 +262,7 @@ const Orders = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <button
                       onClick={() => setSelectedOrder(order)}
-                      className="text-pink-600 hover:text-pink-800 transition flex items-center"
+                      className="text-white-600 hover:text-white-800 transition flex items-center"
                     >
                       <Eye size={16} className="mr-1" /> View
                     </button>

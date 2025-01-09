@@ -47,13 +47,13 @@ function App() {
           <Route element={<AdminLayout />}>
             <Route path="/seller/login" element={<LoginPage />} />
             <Route path="/admin/:sellerId" element={<DashboardPage />} />
-            <Route path="/admin/products" element={<Product />} />
-            <Route path="/admin/complaints" element={<Complaints />} />
-          <Route path="/admin/orders" element={<Orders />} />
-          <Route path="/admin/customers" element={<Customers />} />
-          <Route path="/seller/coupons" element={<CouponPage />} />
-          <Route path="/admin/reviews" element={<Reviews />} />
-          <Route path="/admin/SEO" element={<SEO />} />
+            <Route path="/admin/products/:sellerId" element={<Product />} />
+            <Route path="/admin/complaints/:sellerId" element={<Complaints />} />
+          <Route path="/admin/orders/:sellerId" element={<Orders />} />
+          <Route path="/admin/customers/:sellerId" element={<Customers />} />
+          <Route path="/seller/coupons/:sellerId" element={<CouponPage />} />
+          <Route path="/admin/reviews/:sellerId" element={<Reviews />} />
+          <Route path="/admin/SEO/:sellerId" element={<SEO />} />
 
             {/* Add other admin routes here */}
           </Route>
