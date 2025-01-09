@@ -24,6 +24,8 @@ import ShoppingCartPage from "./pages/user/cart";
 import ProductDetails from "./pages/user/productDetails";
 import Checkout from "./pages/user/checkout";
 
+//updated website
+
 function App() {
   return (
     <Router>
