@@ -121,17 +121,7 @@ const Navbar = () => {
 
             {/* Right Icons */}
             <div className="flex items-center space-x-6">
-              <button
-                type="button"
-                className="text-[#4E0F3E] hover:text-pink-600 transition relative group"
-                aria-label="Search"
-                onClick={toggleSearchOverlay}
-              >
-                <FiSearch className="h-5 w-5" />
-                <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                  Search
-                </span>
-              </button>
+           
 
               {/* User Dropdown */}
               <div className="relative" ref={dropdownRef}>
@@ -170,14 +160,6 @@ const Navbar = () => {
                   )}
                 </AnimatePresence>
               </div>
-
-              <button
-                type="button"
-                className="text-[#4E0F3E] hover:text-pink-600 transition relative group"
-                aria-label="Wishlist"
-              >
-                <FiHeart className="h-5 w-5" />
-              </button>
               <button
                 type="button"
                 className="text-[#4E0F3E] hover:text-pink-600 transition relative group"
