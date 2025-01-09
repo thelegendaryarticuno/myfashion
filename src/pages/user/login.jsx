@@ -137,42 +137,6 @@ const Login = () => {
               </button>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <button
-                type="button"
-                className="w-full border border-gray-300 py-2.5 px-4 flex justify-center items-center hover:bg-gray-50 transition-colors"
-              >
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-                  alt="Google"
-                  className="h-5 w-5 mr-2"
-                />
-                Google
-              </button>
-              <button
-                type="button"
-                className="w-full border border-gray-300 py-2.5 px-4 flex justify-center items-center hover:bg-gray-50 transition-colors"
-              >
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-                  alt="Facebook"
-                  className="h-5 w-5 mr-2"
-                />
-                Facebook
-              </button>
-            </div>
-
             <p className="text-center text-sm text-gray-600">
               Don't have an account?{" "}
               <Link to="/signup" className="text-[#8b6d3f] hover:underline">

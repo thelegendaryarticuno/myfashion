@@ -11,29 +11,29 @@ const Hero = () => {
   });
 
   const carouselImages = [
-    "https://images.unsplash.com/photo-1525609004556-c46c949d84ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDIwfHxpbmR1c2lhbiUyMGV0aG5pY3xlbnwwfHx8fDE2ODg4MzIwMzc&ixlib=rb-4.0.3&q=80&w=1200",
-    "https://images.unsplash.com/photo-1610078172498-7d5e994a7019?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDEyfHxpbmR1c2lhbiUyMGV0aG5pY3xlbnwwfHx8fDE2ODg4MzIwNTI&ixlib=rb-4.0.3&q=80&w=1200",
-    "https://images.unsplash.com/photo-1580910051071-a17b6bfca68c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDV8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMzMDQz&ixlib=rb-4.0.3&q=80&w=1200",
-    "https://images.unsplash.com/photo-1605902711622-cfb43c4437e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDR8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMzMDU4&ixlib=rb-4.0.3&q=80&w=1200",
+    "https://images.pexels.com/photos/4427652/pexels-photo-4427652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "https://images.pexels.com/photos/3489129/pexels-photo-3489129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   ];
 
   const flashSaleProducts = [
     {
-      image: "https://images.unsplash.com/photo-1556909217-8dbbe4b3bdc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDIyfHxpbmR1c2lhbiUyMGV0aG5pYyUyMGJyaWRhbCUyMGdhb3dufGVufDB8fHx8MTY4ODgzMjA3Ng&ixlib=rb-4.0.3&q=80&w=400",
+      image: "https://images.pexels.com/photos/4427652/pexels-photo-4427652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       title: "Embroidered Kundan Red Maharani",
       originalPrice: 8999,
       salePrice: 4599,
       discount: "47% off",
     },
     {
-      // image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDE5fHxpbmR1c2lhbiUyMGV0aG5pYyUyMHdhcmV8ZW58MHx8fHwxNjg4ODM0MDg2&ixlib=rb-4.0.3&q=80&w=400",
+      image: "https://images.pexels.com/photos/4427652/pexels-photo-4427652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       title: "Designer Party Saree",
       originalPrice: 6999,
       salePrice: 3999,
       discount: "43% off",
     },
     {
-      // image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDExfHxpbmR1c2lhbiUyMGV0aG5pYyUyMGdsb3duJTIwY29sbGVjdGlvbnxlbnwwfHx8fDE2ODg4MzIwOTg&ixlib=rb-4.0.3&q=80&w=400",
+      image: "https://images.pexels.com/photos/4427652/pexels-photo-4427652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       title: "Ethnic Gown Collection",
       originalPrice: 5999,
       salePrice: 2999,
@@ -110,7 +110,7 @@ const Hero = () => {
       </div>
 
       {/* Flash Sale Section with updated styling */}
-      <div className="bg-gradient-to-r from-red-50 to-pink-50 py-12">
+      <div className="bg-gradient-to-r from-red-50 to-purple-50 py-12">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-4">
@@ -165,6 +165,11 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Blank Area for Upcoming Banner */}
+      <div className="py-12">
+        {/* TODO: Add upcoming banner here */}
+      </div>
+
       {/* Shop By Category */}
       <div className="bg-gray-50 py-8">
         <div className="container mx-auto px-4">
@@ -175,10 +180,10 @@ const Hero = () => {
                 key={category}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                className="relative rounded-lg overflow-hidden aspect-square"
+                className="relative rounded-lg overflow-hidden"
               >
                 <img
-                  src={`https://images.unsplash.com/photo-1513161455079-24309fc384f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDF8fGluZHVzaWFuJTIwZXRoaGljJTIwZGVzaWdufGVufDB8fHx8MTY4ODgzMjEyNA&ixlib=rb-4.0.3&q=80&w=300`}
+                  src={`https://images.pexels.com/photos/876467/pexels-photo-876467.jpeg?auto=compress&cs=tinysrgb&w=800`}
                   alt={category}
                   className="w-full h-full object-cover"
                 />
@@ -193,22 +198,42 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Continuous Scrolling Text Banner */}
+      <div className="py-8 bg-[#4E0F3E] text-white">
+        <div className="container mx-auto overflow-hidden relative">
+          <div className="animate-marquee whitespace-nowrap">
+            <span className="mx-8">
+              FREE SHIPPING ON ORDERS OVER ₹1000
+            </span>
+            <span className="mx-8">
+              NEW SEASON SALE STARTS NOW! DON'T MISS OUT.
+            </span>
+            <span className="mx-8">
+              LIMITED TIME OFFER, SHOP NOW!
+            </span>
+            <span className="mx-8">
+              EXCLUSIVE DEALS JUST FOR YOU, HURRY!
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* Triple Banner Ad Section */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              image: "https://images.unsplash.com/photo-1583394838336-acd977736f50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDh8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMTIy&ixlib=rb-4.0.3&q=80&w=600",
+              image: "https://images.pexels.com/photos/3489129/pexels-photo-3489129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               title: "Designer Collection",
               subtitle: "Up to 40% Off",
             },
             {
-              image: "https://images.unsplash.com/photo-1580910051009-fc74086b0e78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDN8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMTMy&ixlib=rb-4.0.3&q=80&w=600",
+              image: "https://images.pexels.com/photos/3489129/pexels-photo-3489129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               title: "New Arrivals",
               subtitle: "Shop Latest Trends",
             },
             {
-              image: "https://images.unsplash.com/photo-1583394838336-acd977736f50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDV8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMTM1&ixlib=rb-4.0.3&q=80&w=600",
+              image: "https://images.pexels.com/photos/3489129/pexels-photo-3489129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
               title: "Accessories",
               subtitle: "Starting at ₹299",
             },
@@ -247,7 +272,7 @@ const Hero = () => {
           className="relative h-96 rounded-xl overflow-hidden"
         >
           <img
-            src="https://images.unsplash.com/photo-1555529669-6a81aa2e3d47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDJ8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMjA2&ixlib=rb-4.0.3&q=80&w=1200"
+            src="https://images.pexels.com/photos/3489129/pexels-photo-3489129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="Deal of the Day"
             className="w-full h-full object-cover"
           />
@@ -301,22 +326,22 @@ const Hero = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-1608198093007-46a05ad446a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDl8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMTg1&ixlib=rb-4.0.3&q=80&w=300",
+                image: "https://images.pexels.com/photos/346343/pexels-photo-346343.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=300",
                 name: "Bridal Wear",
                 items: "250+ Items",
               },
               {
-                image: "https://images.unsplash.com/photo-1601860049476-3ba1f2843d60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDN8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2VzfGVufDB8fHx8MTY4ODgzMjE5NQ&ixlib=rb-4.0.3&q=80&w=300",
+                image: "https://images.pexels.com/photos/346343/pexels-photo-346343.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=300",
                 name: "Traditional Sarees",
                 items: "180+ Items",
               },
               {
-                image: "https://images.unsplash.com/photo-1597589202982-6b7a735b7e64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDIyfHxpbmR1c2lhbiUyMGV0aG5pYyUyMGltYWdlc3xlbnwwfHx8fDE2ODg4MzIwOTk&ixlib=rb-4.0.3&q=80&w=300",
+                image: "https://images.pexels.com/photos/346343/pexels-photo-346343.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=300",
                 name: "Designer Lehengas",
                 items: "120+ Items",
               },
               {
-                image: "https://images.unsplash.com/photo-1605320735862-f8aa9a4904c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDR8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2VzfGVufDB8fHx8MTY4ODgzMjE5NA&ixlib=rb-4.0.3&q=80&w=300",
+                image: "https://images.pexels.com/photos/346343/pexels-photo-346343.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=300",
                 name: "Fusion Wear",
                 items: "150+ Items",
               },
@@ -353,11 +378,11 @@ const Hero = () => {
       <div className="relative py-16 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1555529669-6a81aa2e3d47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDJ8fGluZHVzaWFuJTIwZXRoaGljJTIwaW1hZ2V8ZW58MHx8fHwxNjg4ODMyMjA2&ixlib=rb-4.0.3&q=80&w=1200"
+            src="https://images.pexels.com/photos/3489129/pexels-photo-3489129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt="Background"
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-red-500 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-800 to-red-800 mix-blend-multiply" />
         </div>
         <div className="relative container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
@@ -380,6 +405,23 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Marquee Animation Styles */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        .animate-marquee {
+          display: inline-block;
+          white-space: nowrap;
+          animation: marquee 15s linear infinite;
+        }
+      `}</style>
     </div>
   );
 };

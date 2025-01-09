@@ -37,7 +37,7 @@ const SearchBar = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://ecommercebackend-8gx8.onrender.com/get-product"
+        "https://myfashion-backend-axwh.onrender.com/get-product"
       );
       const data = await response.json();
       if (data.success) {
